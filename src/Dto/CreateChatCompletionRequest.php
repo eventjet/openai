@@ -20,12 +20,11 @@ final readonly class CreateChatCompletionRequest
 {
     /**
      * @param non-empty-list<ChatCompletionRequestMessage> $messages
-     * @param ResponseFormatText | ResponseFormatJsonObject | ResponseFormatJsonSchema $response_format
      */
     public function __construct(
         public Model|string $model,
         public array $messages,
-        public string|array|null $response_format = null,
+        public ResponseFormatText|ResponseFormatJsonObject|null $response_format = null,
     ) {
     }
 }
