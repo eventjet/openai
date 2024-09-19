@@ -12,9 +12,6 @@ namespace Eventjet\OpenAi\Dto;
  *     ChatCompletionRequestToolMessage |
  *     ChatCompletionRequestFunctionMessage
  * )
- * @phpstan-type ResponseFormatText 'text'
- * @phpstan-type ResponseFormatJsonObject 'json_object'
- * @phpstan-type ResponseFormatJsonSchema array<string, mixed>
  */
 final readonly class CreateChatCompletionRequest
 {
