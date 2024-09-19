@@ -6,6 +6,3 @@ jobs:
   qa:
     uses: eventjet/ci/.github/workflows/php.yml@main
     secrets: inherit
-    with:
-      coverage_threshold_alert: 0
-      coverage_threshold_warning: 0
