@@ -6,3 +6,5 @@ jobs:
   qa:
     uses: eventjet/ci/.github/workflows/php.yml@main
     secrets: inherit
+    env:
+      OPENAI_API_KEY: "foobar"
