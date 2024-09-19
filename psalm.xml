@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<psalm
+    strictBinaryOperands="true"
+    errorLevel="1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="true"
+>
+    <projectFiles>
+        <directory name="src"/>
+        <directory name="tests"/>
+        <ignoreFiles>
+            <directory name="vendor"/>
+        </ignoreFiles>
+    </projectFiles>
+    <plugins>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+    </plugins>
+    <issueHandlers>
+        <PossiblyUnusedMethod>
+            <errorLevel type="info">
+                <!-- These are instantiated by eventjet/json -->
+                <referencedMethod name="/^Eventjet\\OpenAi\\Dto\\\w+::__construct$/"/>
+            </errorLevel>
+        </PossiblyUnusedMethod>
+        <PossiblyUnusedProperty>
+            <errorLevel type="info">
+                <!-- Testing each property of every DTO would just test eventjet/json -->
+                <directory name="src/Dto"/>
+            </errorLevel>
+        </PossiblyUnusedProperty>
+    </issueHandlers>
+</psalm>
