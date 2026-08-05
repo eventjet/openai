@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Eventjet\Test\Functional\OpenAi;
 
 use LogicException;
+use Override;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
+use function array_splice;
 use function count;
 use function explode;
 use function implode;
@@ -123,6 +125,7 @@ final class TestHttpClient implements ClientInterface
         return implode("\n\n", $formatted);
     }
 
+    #[Override]
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
         if ($this->map === []) {
@@ -154,7 +157,7 @@ final class TestHttpClient implements ClientInterface
             /** @psalm-suppress PropertyTypeCoercion False positive: It can't become less than 1 here */
             $this->map[$index][2]--;
         } else {
-            unset($this->map[$index]);
+            array_splice($this->map, $index, 1);
         }
         return $response;
     }

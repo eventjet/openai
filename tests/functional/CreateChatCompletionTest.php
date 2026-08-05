@@ -14,6 +14,7 @@ use Eventjet\OpenAi\Dto\Model;
 use Eventjet\OpenAi\OpenAi;
 use Eventjet\Test\Functional\OpenAi\TestHttpClient as Http;
 use GuzzleHttp\Psr7\HttpFactory;
+use Override;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -98,6 +99,7 @@ final class CreateChatCompletionTest extends TestCase
         $this->openAi->createChatCompletion(self::completionRequest());
     }
 
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
