@@ -1,35 +1,28 @@
 {
     "name": "eventjet/openai",
-    "type": "library",
     "description": "",
-    "license": "proprietary",
+    "license": "MIT",
+    "type": "library",
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.4",
         "eventjet/json": "^0.2",
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.1"
     },
     "require-dev": {
         "eventjet/coding-standard": "^3.12",
-        "guzzlehttp/guzzle": "^7.9",
-        "infection/infection": "^0.31.2",
+        "guzzlehttp/guzzle": "^8.0",
+        "infection/infection": "^0.34.0",
         "maglnet/composer-require-checker": "^4.16",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
-        "phpunit/phpunit": "^12.3",
+        "phpunit/phpunit": "^13.0",
         "psalm/plugin-phpunit": "^0.19.5",
         "vimeo/psalm": "^6.13"
     },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "infection/extension-installer": true
-        }
-    },
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Eventjet\\OpenAi\\": "src"
@@ -37,17 +30,18 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Eventjet\\Test\\Integration\\OpenAi\\": "tests/integration",
-            "Eventjet\\Test\\Functional\\OpenAi\\": "tests/functional"
+            "Eventjet\\Test\\Functional\\OpenAi\\": "tests/functional",
+            "Eventjet\\Test\\Integration\\OpenAi\\": "tests/integration"
         }
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://pack.eventjet.at/"
-        }
-    ],
-    "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "infection/extension-installer": true,
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
     "scripts": {
         "check": [
             "@check-deps",

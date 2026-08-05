@@ -1,5 +1,7 @@
 {
+    "$schema": "vendor/infection/infection/resources/schema.json",
     "timeout": 10,
+    "staticAnalysisTool": "phpstan",
     "source": {
         "directories": [
             "src"
