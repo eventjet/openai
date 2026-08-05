@@ -11,6 +11,7 @@ use Eventjet\OpenAi\Dto\Model;
 use Eventjet\OpenAi\OpenAi;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\HttpFactory;
+use Override;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -37,6 +38,7 @@ final class CreateChatCompletionTest extends TestCase
         self::assertSame('42', $response->choices[0]->message->content);
     }
 
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
