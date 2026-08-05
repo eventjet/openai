@@ -4,3 +4,4 @@
 /composer.lock
 /infection-log.txt
 /vendor/
+/.phpunit
