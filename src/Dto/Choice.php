@@ -13,7 +13,7 @@ final readonly class Choice
         public string $finish_reason,
         public int $index,
         public ChatCompletionResponseMessage $message,
-        public Logprobs|null $logprobs,
+        public Logprobs|null $logprobs = null,
     ) {
     }
 }

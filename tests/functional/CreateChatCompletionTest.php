@@ -93,10 +93,36 @@ final class CreateChatCompletionTest extends TestCase
     {
         $this->http->map(Http::path('/v1/chat/completions'), $this->httpFactory->createResponse(500));
 
-        $this->expectExceptionMessage('Failed to create chat completion (HTTP 500)');
+        $this->expectExceptionMessageIsOrContains('Failed to create chat completion (HTTP 500)');
         $this->expectException(RuntimeException::class);
 
         $this->openAi->createChatCompletion(self::completionRequest());
+    }
+
+    public function testAcceptsChoicesWithoutLogprobs(): void
+    {
+        $this->http->map(
+            Http::path('/v1/chat/completions'),
+            $this->httpFactory->createResponse()->withBody($this->httpFactory->createStream(<<<'JSON'
+                {
+                    "id": "myid",
+                    "object": "chat.completion",
+                    "created": 1792061063,
+                    "model": "gpt-6-luna",
+                    "choices": [
+                        {
+                            "index": 0,
+                            "message": {"role": "assistant", "content": "I'm fine.", "refusal": null},
+                            "finish_reason": "stop"
+                        }
+                    ]
+                }
+                JSON)),
+        );
+
+        $response = $this->openAi->createChatCompletion(self::completionRequest());
+
+        self::assertSame('I\'m fine.', $response->choices[0]->message->content);
     }
 
     #[Override]
