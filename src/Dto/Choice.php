@@ -7,7 +7,7 @@ namespace Eventjet\OpenAi\Dto;
 final readonly class Choice
 {
     /**
-     * @param 'stop' | 'length' | 'tool_calls' | 'content_filter' | 'function_call' $finish_reason
+     * @param 'stop' | 'length' | 'tool_calls' | 'content_filter' | 'function_call' | string $finish_reason
      */
     public function __construct(
         public string $finish_reason,
