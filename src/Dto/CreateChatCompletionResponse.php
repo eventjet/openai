@@ -8,7 +8,7 @@ final readonly class CreateChatCompletionResponse
 {
     /**
      * @param list<Choice> $choices
-     * @param 'chat.completion' $object
+     * @param 'chat.completion' | string $object
      */
     public function __construct(
         public string $id,

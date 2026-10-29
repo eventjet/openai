@@ -7,7 +7,7 @@ namespace Eventjet\OpenAi\Dto;
 final readonly class ChatCompletionResponseMessage
 {
     /**
-     * @param 'assistant' $role
+     * @param 'assistant' | string $role
      */
     public function __construct(
         public string|null $content,
