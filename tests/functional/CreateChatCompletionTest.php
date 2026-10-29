@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Eventjet\Test\Functional\OpenAi;
 
+use Eventjet\Json\DecodeError;
 use Eventjet\OpenAi\Dto\ChatCompletionRequestSystemMessage;
 use Eventjet\OpenAi\Dto\ChatCompletionRequestUserMessage;
 use Eventjet\OpenAi\Dto\ChatCompletionResponseMessage;
@@ -123,6 +124,18 @@ final class CreateChatCompletionTest extends TestCase
         $response = $this->openAi->createChatCompletion(self::completionRequest());
 
         self::assertSame('I\'m fine.', $response->choices[0]->message->content);
+    }
+
+    public function testThrowsWhenResponseDoesNotMatchTheExpectedShape(): void
+    {
+        $this->http->map(
+            Http::path('/v1/chat/completions'),
+            $this->httpFactory->createResponse()->withBody($this->httpFactory->createStream('{"id": "myid"}')),
+        );
+
+        $this->expectException(DecodeError::class);
+
+        $this->openAi->createChatCompletion(self::completionRequest());
     }
 
     #[Override]

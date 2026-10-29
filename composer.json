@@ -5,7 +5,7 @@
     "type": "library",
     "require": {
         "php": ">=8.4",
-        "eventjet/json": "^0.2",
+        "eventjet/json": "dev-tabula-rasa as 0.3.0",
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.1"
     },
@@ -31,7 +31,8 @@
     "autoload-dev": {
         "psr-4": {
             "Eventjet\\Test\\Functional\\OpenAi\\": "tests/functional",
-            "Eventjet\\Test\\Integration\\OpenAi\\": "tests/integration"
+            "Eventjet\\Test\\Integration\\OpenAi\\": "tests/integration",
+            "Eventjet\\Test\\Unit\\OpenAi\\": "tests/unit"
         }
     },
     "config": {
@@ -60,5 +61,11 @@
         "phpstan": "phpstan analyse",
         "phpunit": "phpunit",
         "psalm": "psalm"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/eventjet/eventjet-json"
+        }
+    ]
 }
