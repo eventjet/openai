@@ -61,11 +61,5 @@
         "phpstan": "phpstan analyse",
         "phpunit": "phpunit",
         "psalm": "psalm"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/eventjet/eventjet-json"
-        }
-    ]
+    }
 }
