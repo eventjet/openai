@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Eventjet\OpenAi;
 
+use Eventjet\Json\DecodeError;
 use Eventjet\Json\Json;
 use Eventjet\OpenAi\Dto\CreateChatCompletionRequest;
 use Eventjet\OpenAi\Dto\CreateChatCompletionResponse;
@@ -46,6 +47,10 @@ final readonly class OpenAi
         if ($response->getStatusCode() !== 200) {
             throw new RuntimeException(sprintf('Failed to create chat completion (HTTP %d)', $response->getStatusCode()));
         }
-        return Json::decode((string)$response->getBody(), CreateChatCompletionResponse::class);
+        $completion = Json::decode((string)$response->getBody(), CreateChatCompletionResponse::class);
+        if ($completion instanceof DecodeError) {
+            throw $completion;
+        }
+        return $completion;
     }
 }
